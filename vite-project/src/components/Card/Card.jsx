@@ -1,17 +1,13 @@
 import * as S from "./Card.styled";
+import { colorList } from "../../lib/topic.js";
 const Card = ({ topic, title, date }) => {
-  const colorList = {
-    "Web Desing": "_orange",
-    Copywriting: "_purple",
-    Research: "_green",
-  };
-  const colorClass = colorList[topic] || "";
+
   return (
     <div className="cards__item">
       <div className="cards__card card">
         <S.CardGroup>
           {/* <div className={`card__theme ${colorClass}`}> */}
-          <S.CardTopic $topicCalor = {colorClass} >
+          <S.CardTopic  $topicColor = {colorList[topic]} >
             <S.TopicText>{topic}</S.TopicText>
             {/* <p className={colorClass}>{topic}</p> */}
             {/* </div> */}

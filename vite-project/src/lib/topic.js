@@ -16,3 +16,8 @@ export const topicStyles = {
       color: "#ffffff",
     },
   };
+  export const colorList = {
+    "Web Desing": "_orange",
+    Research: "_green",
+    Copywriting: "_purple",
+  };
