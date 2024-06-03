@@ -1,4 +1,6 @@
 import { useState } from "react";
+import * as S from "./Header.styled";
+import * as B from "../shared.styled";
 
 const Header = ({setCards, cards}) => {
   const [isOpen, setOpen] = useState(false);
@@ -20,9 +22,9 @@ status: "Без статуса",
     setCards (newCardList);
   }
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
+    <S.Header>
+      <B.Container>
+        <S.HeaderBlock>
           <div className="header__logo _show _light">
             <a href="" target="_self">
               <img src="IMG/logo.png" alt="logo" />
@@ -33,28 +35,28 @@ status: "Без статуса",
               <img src="images/logo_dark.png" alt="logo" />
             </a>
           </div>
-          <nav className="header__nav">
+          <S.HeaderNav>
             <button className="header__btn-main-new _hover01" onClick={onAddCard}>
               Создать новую задачу
             </button>
-            <div className="header__user _hover02" onClick={hendleOpen}>
+            <S.HeaderUser onClick={hendleOpen}>
               Ivan Ivanov
-            </div>
-{isOpen && (            <div className="header__pop-user-set pop-user-set" >
-              <p className="pop-user-set__name">Ivan Ivanov</p>
-              <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
+            </S.HeaderUser>
+{isOpen && (            <S.HeaderPopUserSet >
+              <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
+              <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
               <div className="pop-user-set__theme">
                 <p>Темная тема</p>
                 <input type="checkbox" className="checkbox" name="checkbox" />
               </div>
-              <button type="button" className="_hover03">
+              <S.ButtonUser>
                 <a href="#popExit">Выйти</a>
-              </button>
-            </div>)}
-          </nav>
-        </div>
-      </div>
-    </header>
+              </S.ButtonUser>
+            </S.HeaderPopUserSet>)}
+          </S.HeaderNav>
+        </S.HeaderBlock>
+      </B.Container>
+    </S.Header>
   );
 };
 
