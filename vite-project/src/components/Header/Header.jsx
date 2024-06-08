@@ -1,6 +1,8 @@
 import { useState } from "react";
 import * as S from "./Header.styled";
 import * as B from "../shared.styled";
+import { Link } from "react-router-dom";
+import { appRoutes } from "../../lib/AppRoutes";
 
 const Header = ({setCards, cards}) => {
   const [isOpen, setOpen] = useState(false);
@@ -49,9 +51,11 @@ status: "Без статуса",
                 <p>Темная тема</p>
                 <input type="checkbox" className="checkbox" name="checkbox" />
               </div>
+              <Link to = {appRoutes.EXIT}>
               <S.ButtonUser>
-                <a href="#popExit">Выйти</a>
+                Выйти
               </S.ButtonUser>
+              </Link>
             </S.HeaderPopUserSet>)}
           </S.HeaderNav>
         </S.HeaderBlock>

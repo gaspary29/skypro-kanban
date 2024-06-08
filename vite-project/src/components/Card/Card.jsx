@@ -1,6 +1,7 @@
 import * as S from "./Card.styled";
 import { colorList } from "../../lib/topic.js";
-const Card = ({ topic, title, date }) => {
+import { Link } from "react-router-dom";
+const Card = ({ topic, title, date, id }) => {
 
   return (
     <div className="cards__item">
@@ -12,14 +13,14 @@ const Card = ({ topic, title, date }) => {
             {/* <p className={colorClass}>{topic}</p> */}
             {/* </div> */}
           </S.CardTopic>
-          <a href="#popBrowse" target="_self">
+          <Link to ={`/card/${id}`}>
             <S.CardBtn>
-              <div></div>
-              <div></div>
-              <div></div>
+              <div>.</div>
+              <div>.</div>
+              <div>.</div>
             </S.CardBtn>
-          </a>
-        </S.CardGroup>
+          </Link>
+        </S.CardGroup> 
         <S.CardContent>
           <a href="" target="_blank">
             <S.CardTitle>{title}</S.CardTitle>
