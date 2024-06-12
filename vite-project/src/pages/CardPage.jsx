@@ -1,9 +1,6 @@
-import PopBrowse from "../components/PopBrowse/PopBrowse"
+import PopBrowse from "../components/PopBrowse/PopBrowse";
 
 export const CardPage = () => {
-
-    return (
-        <PopBrowse/>
-    )
-}
+  return <PopBrowse />;
+};
 export default CardPage;

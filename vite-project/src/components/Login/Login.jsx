@@ -1,27 +1,25 @@
 import { Link } from "react-router-dom";
+import * as S from "../../pages/RegistrationPage/RegistracionPage.styled";
+import { appRoutes } from "../../lib/AppRoutes";
 
 const Login = ({login}) => {
     return(
-    <div className="wrapper">
-        <div className="container-signin">
-            <div className="modal">
-				<div className="modal__block">
-					<div className="modal__ttl">
-						<h2>Вход</h2>
-					</div>
-					<form className="modal__form-login" id="formLogIn" action ="#" onSubmit={login} >
-						<input className="modal__input" type="text" name="login" id="formlogin" placeholder="Эл. почта" />
-						<input className="modal__input" type="password" name="password" id="formpassword" placeholder="Пароль" />
-						<button className="modal__btn-enter _hover01" id="btnEnter" type = "submit">Войти</button>
-						<div className="modal__form-group">
-							<p>Нужно зарегистрироваться?</p>
-                            <Link to = "/register" >Регистрируйтесь здесь</Link>
-						</div>
-					</form>
-				</div>
-            </div>
-        </div>
-    </div>
+       <S.Wrapper>
+       <S.Form >
+         <S.FormContainer>
+           <S.FormHeader>Вход</S.FormHeader>
+         <S.FormInput type="mail" placeholder="Эл. почта" />
+          <S.FormInput type="password" placeholder="Пароль" />
+          <S.FormButton type="button" onClick={login}>
+            Войти
+          </S.FormButton>
+          <S.FormFooter>
+            <S.FooterText>Нужно зарегистрироваться?</S.FooterText>
+            <Link to={appRoutes.REGISTR}>Регистрируйтесь здесь</Link>
+          </S.FormFooter>
+        </S.FormContainer>
+      </S.Form>
+    </S.Wrapper>
 
     )
 };

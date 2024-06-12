@@ -9,24 +9,21 @@ import { cardList } from "../data";
 import { GlobalStyle } from "../Global.styled";
 import { Outlet } from "react-router-dom";
 
-function MainPage () {
-const [cards, setCards] = useState(cardList);
+function MainPage() {
+  const [cards, setCards] = useState(cardList);
 
- return (
-   <>
-   <GlobalStyle/>
- <div className="wrapper">
-    {/* <PopExit />
+  return (
+    <>
+      <GlobalStyle />
+      <div className="wrapper">
+        {/* <PopExit />
      <PopNewCard />
      <PopBrowse /> */}
-     <Outlet/>
-     <Header setCards={setCards} cards={cards} />
-     <Main cardList={cards} />
-   </div> 
-  </>
-
+        <Outlet />
+        <Header setCards={setCards} cards={cards} />
+        <Main cardList={cards} />
+      </div>
+    </>
   );
 }
 export default MainPage;
-
-
