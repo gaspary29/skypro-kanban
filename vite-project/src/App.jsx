@@ -12,26 +12,26 @@ import ExitPage from "./pages/ExitPage";
 function App() {
   // const [cards, setCards] = useState(cardList);
   const [isAuth, setAuth] = useState(false);
-  const navigate = useNavigate();
-  const login = (e) => {
-    e.preventDefault();
-    setAuth(true);
-    navigate(appRoutes.MAIN);
-  };
-  const logout = (e) => {
-    e.preventDefault();
-    setAuth(false);
-    navigate(appRoutes.LOGIN);
-  };
+const [user, setUser] = useState(null)
+  // const login = (e) => {
+  //   e.preventDefault();
+  //   setAuth(true);
+  //   navigate(appRoutes.MAIN);
+  // };
+  // const logout = (e) => {
+  //   e.preventDefault();
+  //   setAuth(false);
+  //   navigate(appRoutes.LOGIN);
+  // };
 
   return (
     <Routes>
-      <Route path={appRoutes.LOGIN} element={<LoginPage login={login} />} />
+      <Route path={appRoutes.LOGIN} element={<LoginPage setAuth={setAuth} setUser={setUser} />} />
       <Route path={appRoutes.REGISTR} element={<RegPage />} />
       <Route element={<PrivateRoute isAuth={isAuth} />}>
-        <Route path={appRoutes.MAIN} element={<MainPage />}>
+        <Route path={appRoutes.MAIN} element={<MainPage setAuth={setAuth} user = {user} setUser={setUser} />}>
           <Route path={appRoutes.CARD} element={<CardPage />} />
-          <Route path={appRoutes.EXIT} element={<ExitPage logout={logout} />} />
+          <Route path={appRoutes.EXIT} element={<ExitPage/>} />
         </Route>
       </Route>
     </Routes>
