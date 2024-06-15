@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { registration } from "../../api";
 import { getUserFromLocalStronge } from "../../helper";
 
-export default function RegPage(setUser) {
+export default function RegPage() {
   const navigate = useNavigate();
  
 
@@ -40,8 +40,8 @@ export default function RegPage(setUser) {
     try {
       await registration(regData).then((data) => {
         console.log(data);
-        setUser(data.user);
-        navigate(paths.MAIN);
+        // setUser(data.user);
+        navigate(appRoutes.MAIN);
       });
     } catch (error) {
       setAddRegError(error.message);
@@ -87,9 +87,12 @@ export default function RegPage(setUser) {
             onChange={handleInputChange}
           />
             {addRegError && <p style={{ color: "red" }}>{addRegError}</p>}
-          <S.FormButton id="SignUpEnter" onClick={handleReg}>
-            <Link to={appRoutes.MAIN}>Зарегистрироваться</Link>
-          </S.FormButton>
+         
+            <Link to={appRoutes.MAIN}>
+               <S.FormButton  onClick={handleReg}>
+              Зарегистрироваться
+              </S.FormButton>
+              </Link>
           <S.FormFooter>
             Уже есть аккаунт? <Link to={appRoutes.LOGIN}>Войдите здесь</Link>
           </S.FormFooter>
