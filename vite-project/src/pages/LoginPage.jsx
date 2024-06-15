@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { appRoutes } from "../lib/AppRoutes";
-import { login } from "../api";
+import { loginUser } from "../api";
 import { Link } from "react-router-dom";
 import * as S from "./RegistrationPage/RegistracionPage.styled";
 
@@ -31,12 +31,12 @@ const LoginPage = ({ setAuth, setUser }) => {
       return;
     }
     try {
-      const response = await login({
+      const response = await  loginUser({
         login: formValues.login,
         password: formValues.password,
       });
 
-      console.log("LOGIN RESPONSE", response);
+      console.log(response);
 
       setAuth(true);
       setUser(response.user);
@@ -58,7 +58,7 @@ const LoginPage = ({ setAuth, setUser }) => {
           <S.FormHeader>Вход</S.FormHeader>
           <S.FormInput
             name="login"
-            type="text"
+            type="login"
             placeholder="Логин"
             value={formValues.login}
             onChange={onInputChange}

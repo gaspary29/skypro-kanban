@@ -3,6 +3,7 @@ const userHost = "https://wedev-api.sky.pro/api/user";
 
 // получить список задач
 export async function getTodos({ token }) {
+  
     const response = await fetch("https://wedev-api.sky.pro/api/kanban", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -70,7 +71,7 @@ export async function getTodos({ token }) {
     return data;
   }
 
-  export async function login(login, password) {
+  export async function loginUser(login, password) {
     const response = await fetch("https://wedev-api.sky.pro/api/user/login", {
       method: "POST",
       body: JSON.stringify({
