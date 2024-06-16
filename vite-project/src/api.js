@@ -41,8 +41,8 @@ export async function getTodos({ token }) {
   }
 
   // залогониться
-  export async function loginUser(login, password) {
-    const response = await fetch("https://wedev-api.sky.pro/api/user", {
+  export async function loginUser({login, password}) {
+    const response = await fetch(userHost, {
       method: "POST",
       body: JSON.stringify({
         login,
