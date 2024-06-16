@@ -1,68 +1,56 @@
 import { useState } from "react";
 import * as S from "./Header.styled";
-import * as B from "../shared.styled";
-import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/AppRoutes";
-import { useUser } from "../../hooks/userUser";
+import { useUser } from "../../hooks/userUser"; 
+import { Container } from "../shared.styled";
 
-const Header = ({setCards, cards}) => {
-  const {user} = useUser();
+const Header = () => {
+  
   const [isOpen, setOpen] = useState(false);
-  const hendleOpen = () => {
-    setOpen ((prev) => !prev)
+
+  function handleOpenModal() {
+    setOpen((prevState) => !prevState);
   }
 
-  const onAddCard = () => {
-   const newCard = {
-    id: Date.now(),
-   title: "TEST",
-topic:"Research",
-date: "13.05.2024",
-status: "Без статуса",
-
-
-   }
-    const newCardList = [...cards,newCard];
-    setCards (newCardList);
-  }
+  const { userData } = useUser();
   return (
     <S.Header>
-      <B.Container>
-        <S.HeaderBlock>
-          <div className="header__logo _show _light">
-            <a href="" target="_self">
-              <img src="IMG/logo.png" alt="logo" />
-            </a>
-          </div>
-          <div className="header__logo _dark">
-            <a href="" target="_self">
-              <img src="images/logo_dark.png" alt="logo" />
-            </a>
-          </div>
-          <S.HeaderNav>
-            <button className="header__btn-main-new _hover01" onClick={onAddCard}>
-              Создать новую задачу
-            </button>
-            <S.HeaderUser onClick={hendleOpen}>
-            {user.name}
-            </S.HeaderUser>
-{isOpen && (            <S.HeaderPopUserSet >
-              <S.PopUserSetName>{user.name}</S.PopUserSetName>
-              <S.PopUserSetMail>{user.login}</S.PopUserSetMail>
-              <div className="pop-user-set__theme">
-                <p>Темная тема</p>
-                <input type="checkbox" className="checkbox" name="checkbox" />
-              </div>
-              <Link to = {appRoutes.EXIT}>
-              <S.ButtonUser>
-                Выйти
-              </S.ButtonUser>
-              </Link>
-            </S.HeaderPopUserSet>)}
-          </S.HeaderNav>
-        </S.HeaderBlock>
-      </B.Container>
-    </S.Header>
+    <Container>
+      <S.HeaderBlock>
+        <S.HeaderLogoLight>
+          <S.LogogLink href="" target="_self">
+            <S.HeaderLogoImage src="IMG/logo.png" alt="logo" />
+          </S.LogogLink>
+        </S.HeaderLogoLight>
+        <S.HeaderLogoDark>
+          <S.LogogLink href="" target="_self">
+            <S.HeaderLogoImage src="images/logo_dark.png" alt="logo" />
+          </S.LogogLink>
+        </S.HeaderLogoDark>
+        <S.HeaderNav>
+          <S.HeaderButtonMainNew to={appRoutes.ADD_TASK}>
+            Создать новую задачу
+          </S.HeaderButtonMainNew>
+          <S.HeaderUser onClick={handleOpenModal}>
+            {userData.name}
+          </S.HeaderUser>
+          {isOpen && (
+            <S.PopUserSet>
+              <S.PopUserSetName>{userData.name}</S.PopUserSetName>
+              <S.PopUserSetMail>{userData.login}</S.PopUserSetMail>
+              <S.PopUserSetTheme>
+                <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
+                <S.InputCheckbox />
+              </S.PopUserSetTheme>
+              <S.ExitLink to={appRoutes.EXIT}>
+                <S.Button>Выйти</S.Button>
+              </S.ExitLink>
+            </S.PopUserSet>
+          )}
+        </S.HeaderNav>
+      </S.HeaderBlock>
+    </Container>
+  </S.Header>
   );
 };
 

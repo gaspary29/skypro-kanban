@@ -1,10 +1,11 @@
-const baseHost = "https://wedev-api.sky.pro/api/kanban";
-const userHost = "https://wedev-api.sky.pro/api/user";
+const host = "https://wedev-api.sky.pro/api/kanban";
+const loginHost = "https://wedev-api.sky.pro/api/user/login";
+const registerHost = "https://wedev-api.sky.pro/api/user";
 
 // получить список задач
 export async function getTodos({ token }) {
   
-  const response = await fetch("https://wedev-api.sky.pro/api/kanban", {
+  const response = await fetch(host, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -24,7 +25,7 @@ export async function getTodos({ token }) {
 //  регистрация
 
   export async function registration({ login, name, password }) {
-    const response = await fetch("https://wedev-api.sky.pro/api/user", {
+    const response = await fetch(registerHost, {
       method: "POST",
       body: JSON.stringify({
         login,
@@ -42,7 +43,7 @@ export async function getTodos({ token }) {
 
   // залогониться
   export async function loginUser({login, password}) {
-    const response = await fetch(userHost, {
+    const response = await fetch(loginHost, {
       method: "POST",
       body: JSON.stringify({
         login,
@@ -119,7 +120,7 @@ export async function getTodos({ token }) {
     date,
     status,
   }) {
-    const response = await fetch("https://wedev-api.sky.pro/api/user", {
+    const response = await fetch(host, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

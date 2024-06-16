@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Main from "../Main/Main";
-import { Wrapper } from "../../pages/RegistrationPage/RegistracionPage.styled";
+import { Wrapper } from "../shared.styled";
 import Header from "../../components/Header/Header";
 import { ErrorMessage } from "./home.styled";
 import { useUser } from "../../hooks/userUser";
