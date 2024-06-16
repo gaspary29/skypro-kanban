@@ -1,3 +1,4 @@
+import { appRoutes } from "../../lib/AppRoutes";
 import Calendar from "../Calendar/Calendar";
 import { Link, useParams } from "react-router-dom";
 
@@ -55,7 +56,7 @@ const PopBrowse = () => {
                   <button className="btn-browse__delete _btn-bor _hover03"><a href="#">Удалить задачу</a></button>
                 </div>
                 <button className="btn-browse__close _btn-bg _hover01">
-                  <Link to = "/" >Закрыть</Link></button>
+                  <Link to = {appRoutes.HOME} >Закрыть</Link></button>
               </div>
               <div className="pop-browse__btn-edit _hide">
                 <div className="btn-group"> 

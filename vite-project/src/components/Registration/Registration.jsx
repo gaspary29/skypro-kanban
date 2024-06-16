@@ -1,12 +1,12 @@
-import * as S from "../../pages/RegistrationPage/RegistracionPage.styled"; 
+import * as S from "../../pages/RegistrationPage/RegistracionPage.styled";
+import { useNavigate } from "react-router-dom";
 import { appRoutes } from "../../lib/AppRoutes"; 
 import { useState } from "react";
-import { loginUser } from "../../api"; 
-import { useNavigate } from "react-router-dom";
+import { registration } from "../../api"; 
 import { useUser } from "../../hooks/userUser"; 
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   const { setUser } = useUser();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
@@ -14,6 +14,7 @@ const Login = () => {
   const [formValues, setFormValues] = useState({
     login: "",
     password: "",
+    name: "",
   });
 
   const onInputChange = (event) => {
@@ -21,28 +22,31 @@ const Login = () => {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const onLogin = async (event) => {
+  const onRegister = async (event) => {
     event.preventDefault();
 
+    if (!formValues.name) {
+      setError("Введите имя!");
+      return;
+    }
+
     if (!formValues.login) {
-      setError("Введите логин");
+      setError("Введите логин!");
       return;
     }
 
     if (!formValues.password) {
-      setError("Введите пароль");
+      setError("Введите пароль!");
       return;
     }
 
     try {
-      const response = await loginUser({
+      const response = await registration({
+        name: formValues.name,
         login: formValues.login,
         password: formValues.password,
       });
 
-      console.log("LOGIN RESPONSE", response.user);
-
-      setError(null);
       setUser(response.user);
       navigate(appRoutes.HOME);
     } catch (error) {
@@ -51,40 +55,45 @@ const Login = () => {
   };
 
   return (
-   
     <S.Wrapper>
       <S.Form>
         <S.FormContainer>
-          <S.FormHeader>Вход</S.FormHeader>
+          <S.FormHeader>Регистрация</S.FormHeader>
           <S.FormInput
-            name="login"
             type="text"
-            placeholder="Логин"
+            name="name"
+            id="first-name"
+            placeholder="Имя"
+            value={formValues.name}
+            onChange={onInputChange}
+          />
+          <S.FormInput
+            type="text"
+            name="login"
+            id="loginReg"
+            placeholder="Эл. почта"
             value={formValues.login}
             onChange={onInputChange}
           />
           <S.FormInput
-            name="password"
             type="password"
+            name="password"
+            id="passwordFirst"
             placeholder="Пароль"
             value={formValues.password}
             onChange={onInputChange}
           />
-          <br />
-          {error && <p>{error}</p>}
-          <S.FormButton onClick={onLogin}>
-            Войти
-            </S.FormButton>
+          {addRegError && <p style={{ color: "red" }}>{addRegError}</p>}
+
+          <Link to={appRoutes.HOME}>
+            <S.FormButton onClick={onRegister}>Зарегистрироваться</S.FormButton>
+          </Link>
           <S.FormFooter>
-            <S.FooterText>Нужно зарегистрироваться?</S.FooterText>
-            <Link to={appRoutes.REGISTR}>Регистрируйтесь здесь</Link>
+            Уже есть аккаунт? <Link to={appRoutes.LOGIN}>Войдите здесь</Link>
           </S.FormFooter>
         </S.FormContainer>
       </S.Form>
     </S.Wrapper>
   );
-};
-
-
-export default Login;
-
+}
+export default Register;

@@ -3,8 +3,10 @@ import * as S from "./Header.styled";
 import * as B from "../shared.styled";
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../lib/AppRoutes";
+import { useUser } from "../../hooks/userUser";
 
 const Header = ({setCards, cards}) => {
+  const {user} = useUser();
   const [isOpen, setOpen] = useState(false);
   const hendleOpen = () => {
     setOpen ((prev) => !prev)
@@ -42,11 +44,11 @@ status: "Без статуса",
               Создать новую задачу
             </button>
             <S.HeaderUser onClick={hendleOpen}>
-              Ivan Ivanov
+            {user.name}
             </S.HeaderUser>
 {isOpen && (            <S.HeaderPopUserSet >
-              <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
-              <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+              <S.PopUserSetName>{user.name}</S.PopUserSetName>
+              <S.PopUserSetMail>{user.login}</S.PopUserSetMail>
               <div className="pop-user-set__theme">
                 <p>Темная тема</p>
                 <input type="checkbox" className="checkbox" name="checkbox" />

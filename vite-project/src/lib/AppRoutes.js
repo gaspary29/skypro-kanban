@@ -1,8 +1,9 @@
 export const appRoutes = {
+    HOME: "/",
     LOGIN: '/login',
     REGISTR: "/register",
-    MAIN: "/",
     CARD: "/card/:id",
     EXIT: "/exit",
     NOT_FOUND: "*",
+    ADD_TASK: '/add-task',
    }

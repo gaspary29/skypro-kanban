@@ -4,32 +4,20 @@ import MainPage from "./pages/MainPage";
 import CardPage from "./pages/CardPage";
 import LoginPage from "./pages/LoginPage";
 import RegPage from "./pages/RegistrationPage/RegistrationPage";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { appRoutes } from "./lib/AppRoutes";
 import ExitPage from "./pages/ExitPage";
+import AddTaskPage from "./pages/AddTustPage/AddTuskPage";
+import { appRoutes } from "./lib/AppRoutes";
 
 function App() {
-  // const [cards, setCards] = useState(cardList);
-  const [isAuth, setAuth] = useState(false);
-const [user, setUser] = useState(null)
-  // const login = (e) => {
-  //   e.preventDefault();
-  //   setAuth(true);
-  //   navigate(appRoutes.MAIN);
-  // };
-  // const logout = (e) => {
-  //   e.preventDefault();
-  //   setAuth(false);
-  //   navigate(appRoutes.LOGIN);
-  // };
+
 
   return (
     <Routes>
-      <Route path={appRoutes.LOGIN} element={<LoginPage setAuth={setAuth} setUser={setUser} />} />
+      <Route path={appRoutes.LOGIN} element={<LoginPage />} />
       <Route path={appRoutes.REGISTR} element={<RegPage />} />
-      <Route element={<PrivateRoute isAuth={isAuth} />}>
-        <Route path={appRoutes.MAIN} element={<MainPage setAuth={setAuth} user = {user} setUser={setUser} />}>
+      <Route element={<PrivateRoute/>}>
+        <Route path={appRoutes.HOME} element={<MainPage  />}>
+        <Route path={appRoutes.ADD_TASK} element={<AddTaskPage />} />
           <Route path={appRoutes.CARD} element={<CardPage />} />
           <Route path={appRoutes.EXIT} element={<ExitPage/>} />
         </Route>

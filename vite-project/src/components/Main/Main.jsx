@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import Column from "../Column/Column";
 import * as S from "./main.styled";
 import { Container } from "../shared.styled";
+import { useTasks } from "../../hooks/userTusk";
 const statusList = [
   "Без статуса",
   "Нужно сделать",
@@ -9,13 +9,8 @@ const statusList = [
   "Тестирование",
   "Готово",
 ];
-const Main = ({ cardList }) => {
-  const [isLoading, setLoading] = useState(true)
-  useEffect (()=>{
-    setTimeout (()=>{
-      setLoading(false);
-    },1000 )
-  }, []);
+const Main = ({ isLoading }) => {
+  const { tasks } = useTasks();
   return (
     <S.Main>
       <Container>
@@ -26,7 +21,7 @@ const Main = ({ cardList }) => {
               <Column
                 key={status}
                 title={status}
-                cardList={cardList.filter((card) => card.status === status)}
+                taskList={tasks.filter((card) => card.status === status)}
               />
             ))}
           </S.MainContent>
