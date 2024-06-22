@@ -83,7 +83,7 @@ const Register = () => {
             value={formValues.password}
             onChange={onInputChange}
           />
-          {addRegError && <p style={{ color: "red" }}>{addRegError}</p>}
+          {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
 
           <Link to={appRoutes.HOME}>
             <S.FormButton onClick={onRegister}>Зарегистрироваться</S.FormButton>

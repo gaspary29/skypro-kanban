@@ -35,7 +35,7 @@ function AppRoutes() {
   </Route>
 </Route>
 <Route path={appRoutes.LOGIN} element={<LoginPage />} />
-<Route path={appRoutes.REGISTER} element={<RegPage/>} />
+<Route path={appRoutes.REGISTR} element={<RegPage/>} />
 </Routes>
   );
 }
