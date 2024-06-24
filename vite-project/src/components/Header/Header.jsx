@@ -39,8 +39,6 @@ const Header = () => {
               <S.PopUserSetName>{userData.name}</S.PopUserSetName>
               <S.PopUserSetMail>{userData.login}</S.PopUserSetMail>
               <S.PopUserSetTheme>
-                <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
-                <S.InputCheckbox />
               </S.PopUserSetTheme>
               <S.ExitLink to={appRoutes.EXIT}>
                 <S.Button>Выйти</S.Button>

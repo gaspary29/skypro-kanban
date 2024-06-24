@@ -1,8 +1,9 @@
 import Column from "../Column/Column";
 import * as S from "./main.styled";
-import { Container } from "../shared.styled";
+import { Container, Loader } from "../shared.styled";
 import { useTasks } from "../../hooks/userTusk";
-const statusList = [
+
+export const statusList = [
   "Без статуса",
   "Нужно сделать",
   "В работе",
@@ -13,21 +14,23 @@ const Main = ({ isLoading }) => {
   const { tasks } = useTasks();
   return (
     <S.Main>
-      <Container>
-        <S.MainBlock>
-          <S.MainContent>
-            {isLoading === true && (<p>Идет загрузка...</p>)}
-            {isLoading === false && statusList.map((status) => (
+    <Container>
+      <S.MainBlock>
+        <S.MainContent>
+          {isLoading && <Loader />}
+          {!isLoading &&
+          statusList.map((status) => (
               <Column
                 key={status}
                 title={status}
                 taskList={tasks.filter((card) => card.status === status)}
               />
             ))}
-          </S.MainContent>
-        </S.MainBlock>
-      </Container>
-    </S.Main>
+        </S.MainContent>
+      </S.MainBlock>
+    </Container>
+  </S.Main>
+
   );
 };
 

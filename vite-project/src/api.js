@@ -62,56 +62,7 @@ export async function getTodos({ token }) {
     const data = await response.json();
     return data;
   }
-  
-  // export async function editTodo({
-  //   title,
-  //   status,
-  //   topic,
-  //   description,
-  //   date,
-  //   id,
-  //   token,
-  // }) {
-  //   const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${id}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     body: JSON.stringify({
-  //       title,
-  //       topic,
-  //       description,
-  //       date,
-  //       status,
-  //     }),
 
-  //   });
-  //   if (!response.ok) {
-  //     const error = await response.json();
-  //     throw new Error(error.error);
-  //   }
-  //   const data = await response.json();
-  //   return data;
-  // }
-  
-  // export async function deleteTodo({ id, token }) {
-  //   const response = await fetch(`https://wedev-api.sky.pro/api/kanban/${id}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   });
-  //   if (!response.ok) {
-  //     const error = await response.json();
-  //     throw new Error(error.error);
-  //   }
-  //   const data = await response.json();
-  //   return data;
-  // }
-
-
-  
-  //добавить
   export async function addTask({
     token,
     title,
@@ -136,6 +87,53 @@ export async function getTodos({ token }) {
   
     if (response.status === 400) {
       throw new Error("Не верные введенные данные");
+    }
+  
+    const data = await response.json();
+    return data;
+  }
+
+  export async function deleteTask({ id, token }) {
+    const response = await fetch(`${host}/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  
+    if (!response.ok) {
+      throw new Error("Ошибка удаления задачи");
+    }
+  
+    const data = await response.json();
+    return data;
+  }
+  
+  export async function editTask({
+    id,
+    token,
+    title,
+    topic,
+    description,
+    date,
+    status,
+  }) {
+    const response = await fetch(`${host}/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        title,
+        topic,
+        description,
+        date,
+        status,
+      }),
+    });
+  
+    if (!response.ok) {
+      throw new Error("Ошибка редактирования задачи");
     }
   
     const data = await response.json();

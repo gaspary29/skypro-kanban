@@ -42,15 +42,3 @@ function AppRoutes() {
 
 export default AppRoutes;
 
-// return (
-//   <>
-//   <GlobalStyle/>
-//   <div className="wrapper">
-//     <PopExit />
-//     <PopNewCard />
-//     <PopBrowse />
-//     <Header setCards={setCards} cards={cards} />
-//     <Main cardList={cards} />
-//   </div>
-//   </>
-// );
