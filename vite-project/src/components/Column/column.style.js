@@ -14,3 +14,10 @@ export const ColumnTitle = styled.div`
   margin: 0 auto;
   display: block;
   `;
+  export const ColumnText = styled.p`
+  color: #94a6be;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+`;

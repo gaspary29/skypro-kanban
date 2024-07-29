@@ -1,11 +1,11 @@
 import Card from "../Card/Card";
-import { Cards, ColumnTitle, MainColumn } from "./column.style";
+import { Cards, ColumnTitle, MainColumn, ColumnText } from "./column.style";
 
 const Column = ({ title, taskList }) => {
   return (
     <MainColumn>
       <ColumnTitle>
-        <p>{title}</p>
+      <ColumnText>{title}</ColumnText>
       </ColumnTitle>  
       <Cards>
         {taskList.map((card) => (

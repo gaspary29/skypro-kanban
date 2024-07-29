@@ -4,7 +4,7 @@ import { appRoutes } from "../../lib/AppRoutes";
 import { useState } from "react";
 import { registration } from "../../api"; 
 import { useUser } from "../../hooks/userUser"; 
-import { Link } from "react-router-dom";
+
 
 const Register = () => {
   const { setUser } = useUser();
@@ -56,44 +56,57 @@ const Register = () => {
 
   return (
     <S.Wrapper>
-      <S.Form>
-        <S.FormContainer>
-          <S.FormHeader>Регистрация</S.FormHeader>
-          <S.FormInput
-            type="text"
-            name="name"
-            id="first-name"
-            placeholder="Имя"
-            value={formValues.name}
-            onChange={onInputChange}
-          />
-          <S.FormInput
-            type="text"
-            name="login"
-            id="loginReg"
-            placeholder="Эл. почта"
-            value={formValues.login}
-            onChange={onInputChange}
-          />
-          <S.FormInput
-            type="password"
-            name="password"
-            id="passwordFirst"
-            placeholder="Пароль"
-            value={formValues.password}
-            onChange={onInputChange}
-          />
-          {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
-
-          <Link to={appRoutes.HOME}>
-            <S.FormButton onClick={onRegister}>Зарегистрироваться</S.FormButton>
-          </Link>
-          <S.FormFooter>
-            Уже есть аккаунт? <Link to={appRoutes.LOGIN}>Войдите здесь</Link>
-          </S.FormFooter>
-        </S.FormContainer>
-      </S.Form>
+      <S.ContainerSignup>
+        <S.Modal>
+          <S.ModalBlock>
+            <S.ModalTitle>
+              <S.ModalTitleText>Регистрация</S.ModalTitleText>
+            </S.ModalTitle>
+            <S.ModalFormLogin id="formLogUp" action="#">
+              <S.ModalInput
+                type="text"
+                name="name"
+                id="first-name"
+                placeholder="Имя"
+                value={formValues.name}
+                onChange={onInputChange}
+              />
+              <S.ModalInput
+                type="text"
+                name="login"
+                id="loginReg"
+                placeholder="Эл. почта"
+                value={formValues.login}
+                onChange={onInputChange}
+              />
+              <S.ModalInput
+                type="password"
+                name="password"
+                id="passwordFirst"
+                placeholder="Пароль"
+                value={formValues.password}
+                onChange={onInputChange}
+              />
+              <S.ModalButtonSignup id="SignUpEnter" onClick={onRegister}>
+                <S.ModalButtonLink to={appRoutes.REGISTR}>
+                  Зарегистрироваться
+                </S.ModalButtonLink>{" "}
+              </S.ModalButtonSignup>
+              {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
+              <S.ModalFormGroup>
+                <S.ModalFormText>
+                  Уже есть аккаунт?{" "}
+                  <S.ModalFormLink to={appRoutes.LOGIN}>
+                    Войдите здесь
+                  </S.ModalFormLink>
+                </S.ModalFormText>
+              </S.ModalFormGroup>
+            </S.ModalFormLogin>
+          </S.ModalBlock>
+        </S.Modal>
+      </S.ContainerSignup>
     </S.Wrapper>
   );
-}
+};
+
 export default Register;

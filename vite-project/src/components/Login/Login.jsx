@@ -1,9 +1,9 @@
-import * as S from "../../pages/RegistrationPage/RegistracionPage.styled"; 
+import * as S from  "./Login.styled";
 import { appRoutes } from "../../lib/AppRoutes"; 
 import { useState } from "react";
 import { loginUser } from "../../api"; 
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../../hooks/userUser"; 
+import { useUser} from "../../hooks/userUser"; 
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -51,36 +51,45 @@ const Login = () => {
   };
 
   return (
-   
+
     <S.Wrapper>
-      <S.Form>
-        <S.FormContainer>
-          <S.FormHeader>Вход</S.FormHeader>
-          <S.FormInput
-            name="login"
-            type="text"
-            placeholder="Логин"
-            value={formValues.login}
-            onChange={onInputChange}
-          />
-          <S.FormInput
-            name="password"
-            type="password"
-            placeholder="Пароль"
-            value={formValues.password}
-            onChange={onInputChange}
-          />
-          <br />
-          {error && <p>{error}</p>}
-          <S.FormButton onClick={onLogin}>
-            Войти
-            </S.FormButton>
-          <S.FormFooter>
-            <S.FooterText>Нужно зарегистрироваться?</S.FooterText>
-            <Link to={appRoutes.REGISTR}>Регистрируйтесь здесь</Link>
-          </S.FormFooter>
-        </S.FormContainer>
-      </S.Form>
+      <S.ContainerSigin>
+        <S.Modal>
+          <S.ModalBlock>
+            <S.ModalTitleWrapper>
+              <S.ModalTitle>Вход</S.ModalTitle>
+            </S.ModalTitleWrapper>
+            <S.ModalFormLogin id="formLogIn" action="#" onSubmit={onLogin}>
+              <S.ModalInput
+                type="text"
+                name="login"
+                id="formlogin"
+                placeholder="Эл. почта"
+                value={formValues.login}
+                onChange={onInputChange}
+              />
+              <S.ModalInput
+                type="password"
+                name="password"
+                id="formpassword"
+                placeholder="Пароль"
+                value={formValues.password}
+                onChange={onInputChange}
+              />
+              <S.ModalButtonEnter id="btnEnter" type="submit">
+                Войти
+              </S.ModalButtonEnter>
+              {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
+              <S.ModalFormGroup>
+                <S.ModalFormText>Нужно зарегистрироваться?</S.ModalFormText>
+                <S.ModalFormLink to={appRoutes.REGISTR}>
+                  Регистрируйтесь здесь
+                </S.ModalFormLink>
+              </S.ModalFormGroup>
+            </S.ModalFormLogin>
+          </S.ModalBlock>
+        </S.Modal>
+      </S.ContainerSigin>
     </S.Wrapper>
   );
 };
